@@ -1,5 +1,6 @@
 import 'package:Atheneum/Screens/InfoPage.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 class Latest extends StatelessWidget {
   const Latest({
@@ -27,23 +28,26 @@ class Latest extends StatelessWidget {
                   return Container(
                     width: 140,
                     height: 100,
+                    // color: Colors.grey,
                     margin: EdgeInsets.only(left: 10, top: 10),
                     child: FittedBox(
                       fit: BoxFit.fill,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: GestureDetector(
-                          onTap: () =>
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => InfoPage(
-                                        data: data,
-                                      ))),
-                          child: Hero(
-                            tag: data,
-                            child: Image.network(
-                                "https://covers.openlibrary.org/b/isbn/" +
-                                    data['isbn'] +
-                                    "-M.jpg"),
+                      child: Container(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: GestureDetector(
+                            onTap: () =>
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => InfoPage(
+                                          data: data,
+                                        ))),
+                            child: Hero(
+                              tag: data,
+                              child: Image.network(
+                                  "https://covers.openlibrary.org/b/isbn/" +
+                                      data['isbn'] +
+                                      "-M.jpg"),
+                            ),
                           ),
                         ),
                       ),
@@ -56,4 +60,3 @@ class Latest extends StatelessWidget {
     );
   }
 }
-
