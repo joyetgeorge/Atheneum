@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "44532832661",
+    "project_id": "atheneum-1b5c1",
+    "storage_bucket": "atheneum-1b5c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:44532832661:android:7d37c545525302cab13e9c",
+        "android_client_info": {
+          "package_name": "com.example.atheneum"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "44532832661-p3860i35jngmvr7i3fhupmruu68jcr06.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAomHXQagZM-XfIqgQpQDk3V6JaH4crtHw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "44532832661-p3860i35jngmvr7i3fhupmruu68jcr06.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
