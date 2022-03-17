@@ -25,13 +25,31 @@ class _NavbarState extends State<Navbar> {
 
   @override
   Widget build(BuildContext context) {
+    List Pages = [
+      Scaffold(
+        body: Center(child: Text("Home")),
+      ),
+      Scaffold(
+        body: Center(child: Text("Books")),
+      ),
+      Scaffold(
+        body: Center(child: Text("Shop")),
+      ),
+      Scaffold(
+        body: Center(child: Text("Wishlist")),
+      ),
+      Scaffold(
+        body: Center(child: Text("Profile")),
+      ),
+    ];
     return Container(
       child: BottomNavigationBar(
         currentIndex: index,
         onTap: (int index) {
           setState(() {
             this.index = index;
-            print(index);
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Pages[index]));
           });
         },
         iconSize: 25,

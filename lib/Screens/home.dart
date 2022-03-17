@@ -1,8 +1,10 @@
 import 'package:Atheneum/Widgets/Latest.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -43,19 +45,58 @@ class _HomeScreenState extends State<HomeScreen> {
 
               if (snapshot.hasData) {
                 final docs = snapshot.data!.docs;
-
-                return Wrap(
-                  spacing: 10,
-                  children: [
-                    Container(
-                      child: Text(
-                        'New arrivals',
-                        style: GoogleFonts.roboto(fontSize: 17),
-                      ),
-                      margin: EdgeInsets.only(left: 12, top: 50),
+                return Scaffold(
+                  appBar: AppBar(
+                    title: Row(
+                      children: [
+                        Text("Atheneum",
+                            style: GoogleFonts.poppins(
+                              fontSize: 23,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.black,
+                            )),
+                        new Spacer(),
+                        Icon(
+                          FeatherIcons.search,
+                          color: Colors.black,
+                        )
+                      ],
                     ),
-                    Latest(docs: docs),
-                  ],
+                    elevation: 0,
+                    backgroundColor: Color.fromARGB(255, 236, 236, 236),
+                  ),
+                  body: SingleChildScrollView(
+                    child: Wrap(
+                      spacing: 10,
+                      children: [
+                        Container(
+                          // margin: EdgeInsets.only(top: 0),
+                          child: Container(
+                            margin: EdgeInsets.only(
+                              left: 15,
+                              right: 15,
+                            ),
+                          ),
+                        ),
+                        Column(
+                          children: [
+                            BookList(),
+                            Latest(docs: docs),
+                            BookList(),
+                            Latest(docs: docs),
+                            BookList(),
+                            Latest(docs: docs),
+                            BookList(),
+                            Latest(docs: docs),
+                            BookList(),
+                            Latest(docs: docs),
+                            BookList(),
+                            Latest(docs: docs)
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
                 );
               }
               return Text('');
@@ -65,14 +106,26 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-// ListView.builder(
-//                   scrollDirection: Axis.vertical,
-//                   itemCount: docs.length,
-//                   itemBuilder: (_, i) {
-// final daa = docs[i].data();
-// final data = daa as Map;
-//                     return ListTile(
-//                       title: Container(width: 100,child: Text(data['name'])),
-//                     );
-//                   },
-//                 );
+class BookList extends StatelessWidget {
+  const BookList({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(left: 15, right: 15, top: 15),
+      child: Row(
+        children: [
+          Text(
+            'New arrivals',
+            style:
+                GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w500),
+          ),
+          new Spacer(),
+          Icon(FeatherIcons.arrowRight)
+        ],
+      ),
+    );
+  }
+}

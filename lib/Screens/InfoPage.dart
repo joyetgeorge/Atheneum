@@ -12,6 +12,13 @@ class InfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(data['name']),
+        titleTextStyle: TextStyle(color: Colors.black),
+        iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: Color.fromARGB(255, 236, 236, 236),
+        elevation: 0,
+      ),
       body: Container(
           child: Column(
         children: [
