@@ -3,8 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 
-class Latest extends StatelessWidget {
-  const Latest({
+class Adventure extends StatelessWidget {
+  const Adventure({
     Key? key,
   }) : super(key: key);
 
@@ -12,7 +12,7 @@ class Latest extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
         stream:
-            FirebaseFirestore.instance.collection('latest').snapshots(),
+            FirebaseFirestore.instance.collection('Adventure').snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasData) {
             final docs = snapshot.data!.docs;

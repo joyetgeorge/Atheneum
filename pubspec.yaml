@@ -43,6 +43,7 @@ dependencies:
   flutter_signin_button: ^2.0.0
   cloud_firestore: ^3.1.10
   shimmer: ^2.0.0
+  fancy_shimmer_image: ^2.0.1+1
 
 dev_dependencies:
   flutter_test:
