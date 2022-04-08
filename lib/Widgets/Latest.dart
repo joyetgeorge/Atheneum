@@ -2,6 +2,7 @@ import 'package:Atheneum/Screens/InfoPage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
+import 'package:page_transition/page_transition.dart';
 
 class Latest extends StatelessWidget {
   const Latest({
@@ -11,8 +12,7 @@ class Latest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-        stream:
-            FirebaseFirestore.instance.collection('latest').snapshots(),
+        stream: FirebaseFirestore.instance.collection('latest').snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasData) {
             final docs = snapshot.data!.docs;
@@ -38,11 +38,13 @@ class Latest extends StatelessWidget {
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(10),
                                   child: GestureDetector(
-                                    onTap: () => Navigator.of(context)
-                                        .push(MaterialPageRoute(
-                                            builder: (context) => InfoPage(
-                                                  data: data,
-                                                ))),
+                                    onTap: () => Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType.fade,
+                                        child: InfoPage(data: data,),
+                                      ),
+                                    ),
                                     child: Hero(
                                       tag: data,
                                       child: FancyShimmerImage(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 
 class ForMe extends StatelessWidget {
   const ForMe({
@@ -29,10 +30,13 @@ class ForMe extends StatelessWidget {
 
                   return GestureDetector(
                     onTap: () =>
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => InfoPage(
-                                          data: data,
-                                        ))),
+                                Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType.fade,
+                                        child: InfoPage(data: data,),
+                                      ),
+                                    ),
                     child: Container(
                       margin: EdgeInsets.only(top: 10),
                       child: Row(

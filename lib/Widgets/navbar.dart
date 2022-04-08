@@ -42,71 +42,75 @@ class _NavbarState extends State<Navbar> {
       ),
     ];
     return Container(
-      child: BottomNavigationBar(
-        currentIndex: index,
-        onTap: (int index) {
-          setState(() {
-            this.index = index;
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Pages[index]));
-          });
-        },
-        iconSize: 25,
-        type: BottomNavigationBarType.fixed,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-              icon: Icon(
-                FeatherIcons.home,
-                color: Colors.black54,
-              ),
-              activeIcon: Icon(
-                FeatherIcons.home,
-                color: Colors.black,
-              ),
-              label: ""),
-          BottomNavigationBarItem(
-              icon: Icon(
-                FeatherIcons.book,
-                color: Colors.black54,
-              ),
-              activeIcon: Icon(
-                FeatherIcons.book,
-                color: Colors.black,
-              ),
-              label: ""),
-          BottomNavigationBarItem(
-              icon: Icon(
-                FeatherIcons.shoppingCart,
-                color: Colors.black54,
-              ),
-              activeIcon: Icon(
-                FeatherIcons.shoppingCart,
-                color: Colors.black,
-              ),
-              label: ""),
-          BottomNavigationBarItem(
-              icon: Icon(
-                FeatherIcons.heart,
-                color: Colors.black54,
-              ),
-              activeIcon: Icon(
-                FeatherIcons.heart,
-                color: Colors.black,
-              ),
-              label: ""),
-          BottomNavigationBarItem(
-              icon: Icon(
-                FeatherIcons.user,
-                color: Colors.black54,
-              ),
-              activeIcon: Icon(
-                FeatherIcons.user,
-                color: Colors.black,
-              ),
-              label: ""),
-        ],
+      height: 55,
+      child: Center(
+        child: BottomNavigationBar(
+          backgroundColor: Color.fromARGB(255, 223, 223, 223),
+          currentIndex: index,
+          onTap: (int index) {
+            setState(() {
+              this.index = index;
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Pages[index]));
+            });
+          },
+          iconSize: 24,
+          type: BottomNavigationBarType.fixed,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+                icon: Icon(
+                  FeatherIcons.home,
+                  color: Colors.black54,
+                ),
+                activeIcon: Icon(
+                  FeatherIcons.home,
+                  color: Colors.black,
+                ),
+                label: ""),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  FeatherIcons.book,
+                  color: Colors.black54,
+                ),
+                activeIcon: Icon(
+                  FeatherIcons.book,
+                  color: Colors.black,
+                ),
+                label: ""),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  FeatherIcons.shoppingCart,
+                  color: Colors.black54,
+                ),
+                activeIcon: Icon(
+                  FeatherIcons.shoppingCart,
+                  color: Colors.black,
+                ),
+                label: ""),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  FeatherIcons.heart,
+                  color: Colors.black54,
+                ),
+                activeIcon: Icon(
+                  FeatherIcons.heart,
+                  color: Colors.black,
+                ),
+                label: ""),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  FeatherIcons.user,
+                  color: Colors.black54,
+                ),
+                activeIcon: Icon(
+                  FeatherIcons.user,
+                  color: Colors.black,
+                ),
+                label: ""),
+          ],
+        ),
       ),
     );
   }

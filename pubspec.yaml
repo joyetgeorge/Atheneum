@@ -44,6 +44,16 @@ dependencies:
   cloud_firestore: ^3.1.10
   shimmer: ^2.0.0
   fancy_shimmer_image: ^2.0.1+1
+  flutter_launcher_icons: ^0.9.2
+  firebase_messaging: ^11.2.11
+  firebase_messaging_web: ^2.2.9
+  flutter_local_notifications: ^9.4.0
+  page_transition: ^2.0.5
+
+flutter_icons:
+  image_path: 'assets/appstore.png'
+  android: true
+  ios: true
 
 dev_dependencies:
   flutter_test:

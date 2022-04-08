@@ -19,13 +19,13 @@ class InfoPage extends StatelessWidget {
       appBar: AppBar(
         title: Row(
           children: [
-            Text(
-              data['name'],
-              style: GoogleFonts.poppins(fontSize: 15),
-            ),
+            // Text(
+            //   data['name'],
+            //   style: GoogleFonts.poppins(fontSize: 15),
+            // ),
             Spacer(),
             Icon(
-              FeatherIcons.bookmark,
+              FeatherIcons.share2,
               color: Colors.black,
             )
           ],
@@ -48,10 +48,10 @@ class InfoPage extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Hero(
-                    tag: data,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Hero(
+                      tag: data,
                       child: Container(
                         width: 120,
                         height: 190,
@@ -132,7 +132,10 @@ class InfoPage extends StatelessWidget {
                                 ],
                               ),
                               style: ElevatedButton.styleFrom(
-                                  primary: Color(0xFF7CE198)),
+                                  primary: Color(0xFF7CE198),
+                                  elevation: 0,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10))),
                             ),
                             SizedBox(
                               width: 30,

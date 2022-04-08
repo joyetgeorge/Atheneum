@@ -77,7 +77,7 @@ class Department extends StatelessWidget {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(20),
                         child: Container(
-                            width: 160,
+                            width: MediaQuery.of(context).size.width/3,
                             height: 30,
                             color: Color.fromARGB(255, 219, 219, 218),
                             child: Row(
@@ -96,10 +96,18 @@ class Department extends StatelessWidget {
                       ),
                       Spacer(),
                       SizedBox(
-                        width: 15,
+                        width: 10,
                       ),
                       Icon(
                         FeatherIcons.moon,
+                        color: Colors.black,
+                        size: 20,
+                      ),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      Icon(
+                        FeatherIcons.bell,
                         color: Colors.black,
                         size: 20,
                       ),
