@@ -1,11 +1,16 @@
+import 'dart:ffi';
+
 import 'package:Atheneum/Widgets/Heading.dart';
 import 'package:Atheneum/Widgets/Latest.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
+import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class InfoPage extends StatelessWidget {
+class InfoPage extends StatefulWidget {
   const InfoPage({
     Key? key,
     required this.data,
@@ -14,15 +19,53 @@ class InfoPage extends StatelessWidget {
   final Map data;
 
   @override
+  State<InfoPage> createState() => _InfoPageState();
+}
+
+class _InfoPageState extends State<InfoPage> {
+  String? uid = '';
+
+  bool borrowed = false;
+
+  List<String>? wishList;
+  List<String>? borrowList;
+
+  // late DateTime borrowDate;
+
+  @override
+  void initState() {
+    getWishlist();
+  }
+
+  getWishlist() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      wishList = prefs.getStringList('wishlist');
+      borrowList = prefs.getStringList('borrowlist');
+      // borrowDate = prefs.getString('borrowDate') as DateTime;
+      // print(borrowDate);
+    });
+
+    if (borrowList!.contains(widget.data['isbn'])) {
+      setState(() {
+        borrowed = true;
+      });
+    }
+
+    print(wishList);
+    print(borrowList);
+  }
+
+  bool heartState = false;
+  bool borrowedState = false;
+  bool dateState = false;
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Row(
           children: [
-            // Text(
-            //   data['name'],
-            //   style: GoogleFonts.poppins(fontSize: 15),
-            // ),
             Spacer(),
             Icon(
               FeatherIcons.share2,
@@ -51,13 +94,13 @@ class InfoPage extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: Hero(
-                      tag: data,
+                      tag: widget.data,
                       child: Container(
                         width: 120,
                         height: 190,
                         child: FancyShimmerImage(
                           imageUrl: "https://covers.openlibrary.org/b/isbn/" +
-                              data['isbn'] +
+                              widget.data['isbn'] +
                               "-M.jpg",
                         ),
                       ),
@@ -71,7 +114,7 @@ class InfoPage extends StatelessWidget {
                         Container(
                           width: 200,
                           child: Text(
-                            data['name'],
+                            widget.data['name'],
                             style: GoogleFonts.roboto(
                               fontSize: 20,
                             ),
@@ -108,12 +151,24 @@ class InfoPage extends StatelessWidget {
                               ],
                             )),
                         SizedBox(
-                          height: 54,
+                          height: 10,
                         ),
                         Row(
                           children: [
                             ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () async {
+                                SharedPreferences prefs =
+                                    await SharedPreferences.getInstance();
+                                setState(() {
+                                  borrowList?.add(widget.data['isbn']);
+                                  borrowed = true;
+                                  dateState = true;
+                                });
+                                prefs.setStringList(
+                                    'borrowlist', borrowList!.toSet().toList());
+                                // prefs.setString(
+                                //     'borrowDate', DateTime.now().toString());
+                              },
                               child: Row(
                                 children: [
                                   Icon(
@@ -124,27 +179,99 @@ class InfoPage extends StatelessWidget {
                                   SizedBox(
                                     width: 10,
                                   ),
-                                  Text(
-                                    'Borrow',
-                                    style: GoogleFonts.poppins(
-                                        color: Colors.black),
-                                  ),
+                                  borrowed == true
+                                      ? Text(
+                                          'Borrowed',
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.black),
+                                        )
+                                      : Text(
+                                          'Borrow',
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.black),
+                                        ),
                                 ],
                               ),
-                              style: ElevatedButton.styleFrom(
-                                  primary: Color(0xFF7CE198),
-                                  elevation: 0,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10))),
+                              style: borrowed == true
+                                  ? ElevatedButton.styleFrom(
+                                      primary: Color.fromARGB(255, 223, 64, 37),
+                                      elevation: 0,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10)))
+                                  : ElevatedButton.styleFrom(
+                                      primary: Color(0xFF7CE198),
+                                      elevation: 0,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10))),
                             ),
+                            // GestureDetector(
+                            //   onTap: (() async {
+                            //     setState(() {
+                            //       borrowList?.add(widget.data['isbn']);
+                            //       borrowedState = true;
+                            //     });
+                            //     SharedPreferences prefs =
+                            //         await SharedPreferences.getInstance();
+                            //     prefs.setStringList(
+                            //         'borrowlist', borrowList!.toSet().toList());
+                            //     print(borrowList);
+                            //   }),
+                            //   child: heartState == true
+                            //       ? Container(
+                            //           width: 100,
+                            //           height: 50,
+                            //           child: Icon(
+                            //             FeatherIcons.star,
+                            //           ),
+                            //         )
+                            //       : Container(
+                            //           width: 100,
+                            //           height: 50,
+                            //           child: Icon(
+                            //             FeatherIcons.heart,
+                            //           ),
+                            //         ),
+                            // ),
                             SizedBox(
                               width: 30,
                             ),
-                            Icon(
-                              FeatherIcons.heart,
+                            GestureDetector(
+                              onTap: (() async {
+                                setState(() {
+                                  wishList?.add(widget.data['isbn']);
+                                  heartState = true;
+                                });
+                                SharedPreferences prefs =
+                                    await SharedPreferences.getInstance();
+                                prefs.setStringList(
+                                    'wishlist', wishList!.toSet().toList());
+                                print(wishList);
+                              }),
+                              child: heartState == true
+                                  ? Icon(
+                                      FeatherIcons.heart,
+                                      color: Colors.red,
+                                    )
+                                  : Icon(
+                                      FeatherIcons.heart,
+                                    ),
                             )
                           ],
-                        )
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        dateState == true ? Row(
+                          children: [
+                            Icon(FeatherIcons.clock),
+                            SizedBox(width: 10,),
+                            Text(DateFormat('dd-MM-yyyy')
+                                .format(DateTime.now().add(Duration(days: 20)))
+                                .toString(), style: GoogleFonts.poppins(fontSize: 15),),
+                          ],
+                        ) : Container(),
                       ],
                     ),
                   ),
@@ -165,7 +292,7 @@ class InfoPage extends StatelessWidget {
                     height: 7,
                   ),
                   Text(
-                    data['description'],
+                    widget.data['description'],
                     style: GoogleFonts.poppins(fontSize: 13),
                   ),
                 ],

@@ -11,8 +11,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:lottie/lottie.dart';
 
-
-
 class IntroPage extends StatefulWidget {
   IntroPage({Key? key}) : super(key: key);
 
@@ -52,14 +50,13 @@ class _IntroPageState extends State<IntroPage> {
                         child: Column(
                       children: [
                         Container(
-                          width: 300,
-                          child: SvgPicture.asset(
-                            'assets/reading.svg',
-                          ),
+                          width: 500,
+                          child: Lottie.network('https://assets6.lottiefiles.com/packages/lf20_na0wlx4i.json'),
                         ),
+                        Spacer(),
                         Text(
-                          'Lorem Ipsum',
-                          style: GoogleFonts.poppins(fontSize: 20),
+                          'Atheneum',
+                          style: GoogleFonts.poppins(fontSize: 40),
                         ),
                         SizedBox(
                           height: 20,
@@ -67,10 +64,12 @@ class _IntroPageState extends State<IntroPage> {
                         Container(
                           width: 300,
                           child: Text(
-                            'This is a Dart-native rendering library. Issues/PRs will be raised in Flutter and flutter/engine as necessary for features that are not good candidates ',
-                            style: GoogleFonts.poppins(fontSize: 15),
+                            '"The ultimate solution for library access, at your finger tip"',
+                            style: GoogleFonts.poppins(fontSize: 15,),
+                            textAlign: TextAlign.center,
                           ),
-                        )
+                        ),
+                        SizedBox(height: 30,)
                       ],
                     )),
                   ),

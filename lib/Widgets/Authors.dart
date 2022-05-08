@@ -1,4 +1,5 @@
 import 'package:Atheneum/Screens/InfoPage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -6,9 +7,11 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Authors extends StatelessWidget {
-  const Authors({
+  Authors({
     Key? key,
   }) : super(key: key);
+
+  final FirebaseAuth auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {

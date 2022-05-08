@@ -1,9 +1,16 @@
+import 'dart:developer';
+
 import 'package:Atheneum/Screens/home.dart';
+import 'package:Atheneum/Screens/mainPage.dart';
 import 'package:Atheneum/Screens/signup_page.dart';
+import 'package:Atheneum/Widgets/navbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+// import 'package:flutter_secure_storage_web/flutter_secure_storage_web.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LogInPage extends StatefulWidget {
   LogInPage({Key? key}) : super(key: key);
@@ -19,6 +26,8 @@ class _LogInPageState extends State<LogInPage> {
   final TextEditingController passwordController = TextEditingController();
 
   final _auth = FirebaseAuth.instance;
+
+  // final storage = new FlutterSecureStorage();
 
   @override
   Widget build(BuildContext context) {
@@ -107,10 +116,8 @@ class _LogInPageState extends State<LogInPage> {
                           child: SizedBox(
                             width: MediaQuery.of(context).size.width / 3,
                             child: NeumorphicButton(
-                              onPressed: () => signIn(
-                                emailController.text,
-                                passwordController.text,
-                              ),
+                              onPressed: () => signIn(emailController.text,
+                                  passwordController.text, _auth),
                               child: Center(
                                 child: Text(
                                   "LOG IN",
@@ -156,16 +163,41 @@ class _LogInPageState extends State<LogInPage> {
     );
   }
 
-  void signIn(String email, String password) async {
+  void signIn(String email, String password, FirebaseAuth auth) async {
+    User? user;
+    String? uid;
+    SharedPreferences prefs;
+
     await _auth
         .signInWithEmailAndPassword(email: email, password: password)
+        .then((value) async => {
+              user = auth.currentUser,
+              uid = user?.uid,
+              print("UID of current user $uid "),
+              prefs = await SharedPreferences.getInstance(),
+              prefs.setString('UID', uid!),
+              prefs.setBool('firstLaunch', false),
+              prefs.setStringList('wishlist', []),
+              prefs.setStringList('borrowlist', []),
+            })
         .then((uid) => {
-              Fluttertoast.showToast(msg: "login successful"),
+              Fluttertoast.showToast(msg: uid.toString()),
+              print(uid.runtimeType),
+              log(uid.toString()),
               Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => HomeScreen()),(route) => false)
+                  MaterialPageRoute(builder: (context) => MainPage()),
+                  (route) => false),
             })
         .catchError((e) {
       Fluttertoast.showToast(msg: e.message());
     });
   }
+
+  // Future storeToken(UserCredential userCredential) async {
+  //   await storage.write(
+  //       key: 'token', value: userCredential.credential!.token.toString());
+  //   await storage.write(
+  //       key: 'userCredential', value: userCredential.credential.toString());
+  // }
+
 }

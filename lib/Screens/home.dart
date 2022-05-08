@@ -38,10 +38,11 @@ class Department extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: Color(0xE3E6EC),
+        color: Colors.white,
         child: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance.collection('books').snapshots(),
           builder:
@@ -62,6 +63,7 @@ class Department extends StatelessWidget {
               final docs = snapshot.data!.docs;
               return Scaffold(
                 appBar: AppBar(
+                  automaticallyImplyLeading: false,
                   title: Row(
                     children: [
                       Text("Atheneum",
@@ -169,4 +171,3 @@ class Department extends StatelessWidget {
         ));
   }
 }
-

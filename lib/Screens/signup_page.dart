@@ -1,3 +1,4 @@
+import 'package:Atheneum/Widgets/navbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -220,7 +221,11 @@ class _SignUpPageState extends State<SignUpPage> {
 
     Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
+        MaterialPageRoute(
+            builder: (context) => Scaffold(
+                  body: HomeScreen(),
+                  bottomNavigationBar: Navbar(),
+                )),
         (route) => false);
   }
 }
