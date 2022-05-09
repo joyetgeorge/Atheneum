@@ -55,7 +55,10 @@ Future<void> main() async {
   if (prefs.getBool('firstLaunch') != false) {
     prefs.setStringList('wishlist', []);
     prefs.setStringList('borrowlist', []);
+    prefs.setStringList('borrowNamelist', []);
   }
+
+  print("borrowNamelist : ${prefs.getStringList('borrowNamelist')}");
 
   print('refresh');
 

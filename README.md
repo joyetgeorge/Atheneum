@@ -1,16 +1,13 @@
-# atheneum
+# Atheneum
 
-A new Flutter project.
+Etheneum is an Android App which aims to provide a solution to manage a Book Library. Designed for both Users/Students and Library Admins, various operations such as adding/removing/updating books, searching books, issuing/re-issuing/returning books, seeing issued books with due dates, collecting fines, etc. can be performed. The App uses Cloud Firestore as the back-end database for storing details of the Books and Users. Firebase Cloud Messaging is used to send realtime notifications to Users if a return deadline is approaching, his/her fine is increased, or when a new book is added to the Library. Cloud Functions are used to monitor the database in order to update fines and trigger notifications.
 
-## Getting Started
+Feel free to contribute and report issues.
 
-This project is a starting point for a Flutter application.
+### Images
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<p align="center">
+   <img src="https://raw.githubusercontent.com/joyetgeorge/Atheneum/master/images/img1.jpeg" width="250">
+   <img src="https://raw.githubusercontent.com/joyetgeorge/Atheneum/master/images/img2.jpeg" width="250">
+   <img src="https://raw.githubusercontent.com/joyetgeorge/Atheneum/master/images/img3.jpeg" width="250">
+</p>

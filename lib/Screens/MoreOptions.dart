@@ -6,6 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
+import 'package:Atheneum/Screens/aboutPage.dart';
+
 class MoreOptions extends StatelessWidget {
   const MoreOptions({Key? key}) : super(key: key);
 
@@ -252,7 +254,7 @@ class MoreOptions extends StatelessWidget {
                             elevation: 0,
                             iconTheme: IconThemeData(color: Colors.black),
                           ),
-                          body: errorPage(),
+                          body: aboutPage(),
                         ),
                       ),
                     );

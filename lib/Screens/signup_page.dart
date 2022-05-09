@@ -218,14 +218,12 @@ class _SignUpPageState extends State<SignUpPage> {
         .set(userModel.toMap());
 
     Fluttertoast.showToast(msg: "Account created");
+    Fluttertoast.showToast(msg: "Login to continue");
 
     Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
-            builder: (context) => Scaffold(
-                  body: HomeScreen(),
-                  bottomNavigationBar: Navbar(),
-                )),
+            builder: (context) => LogInPage()),
         (route) => false);
   }
 }

@@ -29,6 +29,8 @@ class _InfoPageState extends State<InfoPage> {
 
   List<String>? wishList;
   List<String>? borrowList;
+  List<String>? borrowNameList;
+
 
   // late DateTime borrowDate;
 
@@ -42,6 +44,7 @@ class _InfoPageState extends State<InfoPage> {
     setState(() {
       wishList = prefs.getStringList('wishlist');
       borrowList = prefs.getStringList('borrowlist');
+      borrowNameList = prefs.getStringList('borrowNamelist');
       // borrowDate = prefs.getString('borrowDate') as DateTime;
       // print(borrowDate);
     });
@@ -161,11 +164,14 @@ class _InfoPageState extends State<InfoPage> {
                                     await SharedPreferences.getInstance();
                                 setState(() {
                                   borrowList?.add(widget.data['isbn']);
+                                  borrowNameList?.add(widget.data['name']);
                                   borrowed = true;
                                   dateState = true;
                                 });
                                 prefs.setStringList(
                                     'borrowlist', borrowList!.toSet().toList());
+                                prefs.setStringList(
+                                    'borrowNamelist', borrowNameList!.toSet().toList());
                                 // prefs.setString(
                                 //     'borrowDate', DateTime.now().toString());
                               },
@@ -206,34 +212,6 @@ class _InfoPageState extends State<InfoPage> {
                                           borderRadius:
                                               BorderRadius.circular(10))),
                             ),
-                            // GestureDetector(
-                            //   onTap: (() async {
-                            //     setState(() {
-                            //       borrowList?.add(widget.data['isbn']);
-                            //       borrowedState = true;
-                            //     });
-                            //     SharedPreferences prefs =
-                            //         await SharedPreferences.getInstance();
-                            //     prefs.setStringList(
-                            //         'borrowlist', borrowList!.toSet().toList());
-                            //     print(borrowList);
-                            //   }),
-                            //   child: heartState == true
-                            //       ? Container(
-                            //           width: 100,
-                            //           height: 50,
-                            //           child: Icon(
-                            //             FeatherIcons.star,
-                            //           ),
-                            //         )
-                            //       : Container(
-                            //           width: 100,
-                            //           height: 50,
-                            //           child: Icon(
-                            //             FeatherIcons.heart,
-                            //           ),
-                            //         ),
-                            // ),
                             SizedBox(
                               width: 30,
                             ),
@@ -247,6 +225,7 @@ class _InfoPageState extends State<InfoPage> {
                                     await SharedPreferences.getInstance();
                                 prefs.setStringList(
                                     'wishlist', wishList!.toSet().toList());
+                                
                                 print(wishList);
                               }),
                               child: heartState == true

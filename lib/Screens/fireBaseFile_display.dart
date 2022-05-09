@@ -109,13 +109,6 @@ class _displayFirebaseFilesState extends State<displayFirebaseFiles> {
           setState(() {
             isLoading = true;
           });
-
-          // showDialog(
-          //     context: context,
-          //     builder: (ctx) {
-          //       return Center(child: CircularProgressIndicator());
-          //     });
-
           final snackbar = SnackBar(
             content: Row(
               children: [
@@ -143,13 +136,9 @@ class _displayFirebaseFilesState extends State<displayFirebaseFiles> {
 
           ScaffoldMessenger.of(context).showSnackBar(snackbar);
 
-          // Fluttertoast.showToast(msg: "sssdv");
-
           final pdfFile = await PDFapi.loadNetwork(file.url);
 
           openPDF(_scaffoldKey, pdfFile);
-
-          // Fluttertoast.showToast(msg: 'Opening E-Book');
 
           setState(() {
             isLoading = false;

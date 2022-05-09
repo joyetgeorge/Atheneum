@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -16,6 +17,31 @@ class ReqestBook extends StatefulWidget {
 class _ReqestBookState extends State<ReqestBook> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController isbinController = TextEditingController();
+
+  final snackbar = SnackBar(
+    content: Row(
+      children: [
+        Icon(
+          FeatherIcons.download,
+          color: Colors.white,
+          size: 14,
+        ),
+        SizedBox(
+          width: 15,
+        ),
+        Text(
+          'Downloading',
+          style: GoogleFonts.poppins(),
+        ),
+      ],
+    ),
+    backgroundColor: Colors.black,
+    // duration: Duration(days: 365),
+    action: SnackBarAction(
+      label: 'Dismiss',
+      onPressed: () {},
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -68,8 +94,13 @@ class _ReqestBookState extends State<ReqestBook> {
                 height: 250,
                 child: Lottie.asset('assets/lottie/plane.json'),
               ),
-              Text('Request a Book', style: GoogleFonts.poppins(fontSize: 25),),
-              SizedBox(height: 30,),
+              Text(
+                'Request a Book',
+                style: GoogleFonts.poppins(fontSize: 25),
+              ),
+              SizedBox(
+                height: 30,
+              ),
               Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
@@ -97,12 +128,18 @@ class _ReqestBookState extends State<ReqestBook> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10))),
                   onPressed: () {
+                    if (nameController.text != "") {
+                      FirebaseFirestore.instance.collection('Requests').add({
+                        'name': nameController.text,
+                        'isbin': isbinController.text
+                      });
+                      ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                      nameController.clear();
+                      isbinController.clear();
+                    } else {
+                      Fluttertoast.showToast(msg: "Enter values");
+                    }
                     print(nameController.text);
-                    FirebaseFirestore.instance.collection('Requests').add({
-                      'name': nameController.text,
-                      'isbin': isbinController.text
-                    });
-                    // print('success');
                   },
                   child: Container(
                     width: 100,

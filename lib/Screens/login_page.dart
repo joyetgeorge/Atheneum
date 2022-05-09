@@ -173,7 +173,7 @@ class _LogInPageState extends State<LogInPage> {
         .then((value) async => {
               user = auth.currentUser,
               uid = user?.uid,
-              print("UID of current user $uid "),
+              // print("UID of current user $uid "),
               prefs = await SharedPreferences.getInstance(),
               prefs.setString('UID', uid!),
               prefs.setBool('firstLaunch', false),
@@ -182,8 +182,8 @@ class _LogInPageState extends State<LogInPage> {
             })
         .then((uid) => {
               Fluttertoast.showToast(msg: uid.toString()),
-              print(uid.runtimeType),
-              log(uid.toString()),
+              // print(uid.runtimeType),
+              // log(uid.toString()),
               Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(builder: (context) => MainPage()),
                   (route) => false),
