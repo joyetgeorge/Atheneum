@@ -576,33 +576,6 @@ class Books extends StatelessWidget {
                     ],
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(left: 20, right: 20, top: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Container(
-                          width: 170,
-                          height: 100,
-                          color: Colors.amberAccent,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Container(
-                          width: 170,
-                          height: 100,
-                          color: Colors.amberAccent,
-                        ),
-                      )
-                    ],
-                  ),
-                )
               ],
             )),
           ]),

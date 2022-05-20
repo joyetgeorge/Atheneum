@@ -24,7 +24,7 @@ class _IntroPageState extends State<IntroPage> {
   void readData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-       bool isIntro = prefs.getBool('intro')!;
+      bool isIntro = prefs.getBool('intro')!;
     });
   }
 
@@ -41,7 +41,7 @@ class _IntroPageState extends State<IntroPage> {
                 controller: controller,
                 onPageChanged: (index) {
                   setState(() {
-                    isLastPage = index == 2;
+                    isLastPage = index == 4;
                   });
                 },
                 children: [
@@ -49,9 +49,10 @@ class _IntroPageState extends State<IntroPage> {
                     child: Container(
                         child: Column(
                       children: [
+                        Container(height: 70,),
                         Container(
                           width: 500,
-                          child: Lottie.network('https://assets6.lottiefiles.com/packages/lf20_na0wlx4i.json'),
+                          child: Lottie.asset('assets/lottie/atheneum.json'),
                         ),
                         Spacer(),
                         Text(
@@ -65,27 +66,34 @@ class _IntroPageState extends State<IntroPage> {
                           width: 300,
                           child: Text(
                             '"The ultimate solution for library access, at your finger tip"',
-                            style: GoogleFonts.poppins(fontSize: 15,),
+                            style: GoogleFonts.poppins(
+                              fontSize: 15,
+                            ),
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        SizedBox(height: 30,)
+                        SizedBox(
+                          height: 30,
+                        )
                       ],
                     )),
                   ),
                   SafeArea(
                     child: Container(
                         child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
                           width: 300,
-                          child: SvgPicture.asset(
-                            'assets/reviews.svg',
-                          ),
+                          height: 400,
+                          child: Lottie.asset('assets/lottie/notifications.json'),
                         ),
                         Text(
-                          'Lorem Ipsum',
-                          style: GoogleFonts.poppins(fontSize: 20),
+                          'Notification service',
+                          style: GoogleFonts.poppins(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                         SizedBox(
                           height: 20,
@@ -93,7 +101,8 @@ class _IntroPageState extends State<IntroPage> {
                         Container(
                           width: 300,
                           child: Text(
-                            'This is a Dart-native rendering library. Issues/PRs will be raised in Flutter and flutter/engine as necessary for features that are not good candidates ',
+                            '" Notification about whats happening in your library "',
+                            textAlign: TextAlign.center,
                             style: GoogleFonts.poppins(fontSize: 15),
                           ),
                         )
@@ -103,16 +112,19 @@ class _IntroPageState extends State<IntroPage> {
                   SafeArea(
                     child: Container(
                         child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
                           width: 300,
-                          child: SvgPicture.asset(
-                            'assets/notify.svg',
-                          ),
+                          height: 400,
+                          child: Lottie.asset('assets/lottie/request.json'),
                         ),
                         Text(
-                          'Lorem Ipsum',
-                          style: GoogleFonts.poppins(fontSize: 20),
+                          'Request Books',
+                          style: GoogleFonts.poppins(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                         SizedBox(
                           height: 20,
@@ -120,7 +132,70 @@ class _IntroPageState extends State<IntroPage> {
                         Container(
                           width: 300,
                           child: Text(
-                            'This is a Dart-native rendering library. Issues/PRs will be raised in Flutter and flutter/engine as necessary for features that are not good candidates ',
+                            '" Request your favourite books, and we will add those books to the library "',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.poppins(fontSize: 15),
+                          ),
+                        )
+                      ],
+                    )),
+                  ),
+                  SafeArea(
+                    child: Container(
+                        child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 300,
+                          height: 400,
+                          child: Lottie.asset('assets/lottie/questionbank.json'),
+                        ),
+                        Text(
+                          'Qestion Bank',
+                          style: GoogleFonts.poppins(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          width: 300,
+                          child: Text(
+                            '" Access previous year question papers through Atheneum "',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.poppins(fontSize: 15),
+                          ),
+                        )
+                      ],
+                    )),
+                  ),
+                  SafeArea(
+                    child: Container(
+                        child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 300,
+                          height: 400,
+                          child: Lottie.asset('assets/lottie/ebook.json'),
+                        ),
+                        Text(
+                          'Access E-books',
+                          style: GoogleFonts.poppins(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          width: 300,
+                          child: Text(
+                            '" Access 100+ E-books in different categories through Atheneum "',
+                            textAlign: TextAlign.center,
                             style: GoogleFonts.poppins(fontSize: 15),
                           ),
                         )
@@ -180,7 +255,15 @@ class _IntroPageState extends State<IntroPage> {
                         Container(
                           margin: EdgeInsets.only(left: 20),
                           child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.fade,
+                                  child: SignUpPage(),
+                                ),
+                              );
+                            },
                             child: Text(
                               'Skip',
                               style: GoogleFonts.poppins(
@@ -193,7 +276,7 @@ class _IntroPageState extends State<IntroPage> {
                         Center(
                           child: SmoothPageIndicator(
                             controller: controller,
-                            count: 3,
+                            count: 4,
                             effect: WormEffect(dotHeight: 10),
                           ),
                         ),

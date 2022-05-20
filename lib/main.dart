@@ -56,11 +56,9 @@ Future<void> main() async {
     prefs.setStringList('wishlist', []);
     prefs.setStringList('borrowlist', []);
     prefs.setStringList('borrowNamelist', []);
+    prefs.setStringList('schedulelist', []);
   }
-
-  print("borrowNamelist : ${prefs.getStringList('borrowNamelist')}");
-
-  print('refresh');
+  print(prefs.getStringList('schedulelist'));
 
   runApp(Atheneum());
 }

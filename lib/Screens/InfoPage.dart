@@ -8,6 +8,7 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:intl/intl.dart';
+import 'package:share/share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class InfoPage extends StatefulWidget {
@@ -30,7 +31,6 @@ class _InfoPageState extends State<InfoPage> {
   List<String>? wishList;
   List<String>? borrowList;
   List<String>? borrowNameList;
-
 
   // late DateTime borrowDate;
 
@@ -70,9 +70,14 @@ class _InfoPageState extends State<InfoPage> {
         title: Row(
           children: [
             Spacer(),
-            Icon(
-              FeatherIcons.share2,
-              color: Colors.black,
+            GestureDetector(
+              onTap: () {
+                Share.share(widget.data['name']+" "+widget.data['isbn']);
+              },
+              child: Icon(
+                FeatherIcons.share2,
+                color: Colors.black,
+              ),
             )
           ],
         ),
@@ -127,7 +132,8 @@ class _InfoPageState extends State<InfoPage> {
                             margin: EdgeInsets.only(top: 8),
                             width: 100,
                             child: Text(
-                              'Author name',
+                              // widget.data['author'],
+                              "name",
                               style: GoogleFonts.poppins(
                                   color: Color.fromARGB(255, 151, 151, 151)),
                             )),
@@ -170,8 +176,8 @@ class _InfoPageState extends State<InfoPage> {
                                 });
                                 prefs.setStringList(
                                     'borrowlist', borrowList!.toSet().toList());
-                                prefs.setStringList(
-                                    'borrowNamelist', borrowNameList!.toSet().toList());
+                                prefs.setStringList('borrowNamelist',
+                                    borrowNameList!.toSet().toList());
                                 // prefs.setString(
                                 //     'borrowDate', DateTime.now().toString());
                               },
@@ -225,8 +231,6 @@ class _InfoPageState extends State<InfoPage> {
                                     await SharedPreferences.getInstance();
                                 prefs.setStringList(
                                     'wishlist', wishList!.toSet().toList());
-                                
-                                print(wishList);
                               }),
                               child: heartState == true
                                   ? Icon(
@@ -242,15 +246,23 @@ class _InfoPageState extends State<InfoPage> {
                         SizedBox(
                           height: 10,
                         ),
-                        dateState == true ? Row(
-                          children: [
-                            Icon(FeatherIcons.clock),
-                            SizedBox(width: 10,),
-                            Text(DateFormat('dd-MM-yyyy')
-                                .format(DateTime.now().add(Duration(days: 20)))
-                                .toString(), style: GoogleFonts.poppins(fontSize: 15),),
-                          ],
-                        ) : Container(),
+                        dateState == true
+                            ? Row(
+                                children: [
+                                  Icon(FeatherIcons.clock),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    DateFormat('dd-MM-yyyy')
+                                        .format(DateTime.now()
+                                            .add(Duration(days: 20)))
+                                        .toString(),
+                                    style: GoogleFonts.poppins(fontSize: 15),
+                                  ),
+                                ],
+                              )
+                            : Container(),
                       ],
                     ),
                   ),

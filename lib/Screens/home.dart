@@ -1,3 +1,6 @@
+import 'package:Atheneum/Screens/login_page.dart';
+import 'package:Atheneum/Widgets/popular.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
@@ -5,7 +8,8 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-
+import 'package:lottie/lottie.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 import '../Widgets/adventure.dart';
 import 'package:Atheneum/Screens/InfoPage.dart';
@@ -37,7 +41,6 @@ class Department extends StatelessWidget {
   const Department({
     Key? key,
   }) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +82,7 @@ class Department extends StatelessWidget {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(20),
                         child: Container(
-                            width: MediaQuery.of(context).size.width/3,
+                            width: MediaQuery.of(context).size.width / 1.9,
                             height: 30,
                             color: Color.fromARGB(255, 219, 219, 218),
                             child: Row(
@@ -97,33 +100,82 @@ class Department extends StatelessWidget {
                             )),
                       ),
                       Spacer(),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Icon(
-                        FeatherIcons.moon,
-                        color: Colors.black,
-                        size: 20,
-                      ),
+                      // SizedBox(
+                      //   width: 10,
+                      // ),
+                      // Icon(
+                      //   FeatherIcons.moon,
+                      //   color: Colors.black,
+                      //   size: 20,
+                      // ),
+                      // SizedBox(
+                      //   width: 15,
+                      // ),
+                      // Icon(
+                      //   FeatherIcons.bell,
+                      //   color: Colors.black,
+                      //   size: 20,
+                      // ),
                       SizedBox(
                         width: 15,
                       ),
-                      Icon(
-                        FeatherIcons.bell,
-                        color: Colors.black,
-                        size: 20,
-                      ),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: Container(
-                          width: 30,
-                          height: 30,
-                          child: FancyShimmerImage(
-                              imageUrl:
-                                  'https://media.istockphoto.com/photos/millennial-male-team-leader-organize-virtual-workshop-with-employees-picture-id1300972574?b=1&k=20&m=1300972574&s=170667a&w=0&h=2nBGC7tr0kWIU8zRQ3dMg-C5JLo9H2sNUuDjQ5mlYfo='),
+                      GestureDetector(
+                        onTap: (() {
+                          Alert(
+                            context: context,
+                            // type: AlertType.warning,
+                            image: Lottie.asset('assets/lottie/exit.json'),
+                            title: "We will miss you ;(",
+                            // desc:
+                            //     "Flutter is more awesome with RFlutter Alert.",
+                            buttons: [
+                              // DialogButton(
+                              //   child: Text(
+                              //     "Close",
+                              //     style:
+                              //         GoogleFonts.poppins(color: Colors.white),
+                              //   ),
+                              //   onPressed: () => Navigator.pop(context),
+                              //   color: Color.fromRGBO(0, 179, 134, 1.0),
+                              // ),
+                              DialogButton(
+                                child: Text(
+                                  "Logout",
+                                  style:
+                                      GoogleFonts.poppins(color: Colors.white),
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => LogInPage()));
+                                },
+                                color: Color.fromARGB(255, 179, 21, 0),
+                              )
+                            ],
+                          ).show();
+                        }),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(100),
+                          child: Container(
+                            padding: EdgeInsets.all(5),
+                            width: 30,
+                            height: 30,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.red,
+                              ),
+                              borderRadius: BorderRadius.all(Radius.circular(20))
+                            ),
+                            child: CachedNetworkImage(
+                              imageUrl: "https://robohash.org/4?set=set5",
+                              placeholder: (context, url) =>
+                                  new CircularProgressIndicator(
+                                      color: Colors.amber),
+                              errorWidget: (context, url, error) =>
+                                  new Icon(Icons.error),
+                            ),
+                          ),
                         ),
                       ),
                     ],
@@ -153,7 +205,7 @@ class Department extends StatelessWidget {
                           SizedBox(
                             height: 5,
                           ),
-                          Authors(),
+                          Popular(),
                           Heading(title: 'Adventure'),
                           Adventure(),
                           SizedBox(

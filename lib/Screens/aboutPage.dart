@@ -14,9 +14,20 @@ class aboutPage extends StatelessWidget {
             Container(
               height: 400,
               width: 400,
-              child: Center(child: Lottie.network('https://assets7.lottiefiles.com/packages/lf20_dlw10cqe.json')),
+              child: Center(child: Lottie.asset('assets/lottie/code.json')),
             ),
-            Text("Developed by", style: GoogleFonts.poppins(),),
+            Text("Developed by", style: GoogleFonts.poppins(fontSize: 10),),
+            SizedBox(height: 3,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("Joyet", style: GoogleFonts.poppins(),),
+                Text("  |  ", style: GoogleFonts.poppins(fontSize: 9)),
+                Text("Neha", style: GoogleFonts.poppins(),),
+                Text("  |  ", style: GoogleFonts.poppins(fontSize: 9)),
+                Text("Arshad", style: GoogleFonts.poppins(),),
+              ],
+            ),
           ],
         ),
       ),

@@ -1,4 +1,7 @@
+import 'package:Atheneum/Screens/paymentPage.dart';
 import 'package:Atheneum/Screens/reqestBook.dart';
+import 'package:Atheneum/Screens/rules.dart';
+import 'package:Atheneum/Screens/schedule.dart';
 import 'package:Atheneum/Widgets/404.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
@@ -90,7 +93,7 @@ class MoreOptions extends StatelessWidget {
                             elevation: 0,
                             iconTheme: IconThemeData(color: Colors.black),
                           ),
-                          body: errorPage(),
+                          body: DatePickerPage(),
                         ),
                       ),
                     );
@@ -116,6 +119,47 @@ class MoreOptions extends StatelessWidget {
                   ),
                 ),
               ),
+              // SizedBox(
+              //   height: 20,
+              // ),
+              // Container(
+              //   height: 50,
+              //   child: ElevatedButton(
+              //     onPressed: () {
+              //       Navigator.of(context).push(
+              //         MaterialPageRoute(
+              //           builder: (context) => Scaffold(
+              //             appBar: AppBar(
+              //               backgroundColor: Color.fromARGB(255, 243, 243, 243),
+              //               elevation: 0,
+              //               iconTheme: IconThemeData(color: Colors.black),
+              //             ),
+              //             body: errorPage(),
+              //           ),
+              //         ),
+              //       );
+              //     },
+              //     style: ElevatedButton.styleFrom(
+              //         primary: Color.fromARGB(255, 243, 243, 243),
+              //         elevation: 0,
+              //         shape: RoundedRectangleBorder(
+              //             borderRadius: BorderRadius.circular(10))),
+              //     child: Row(
+              //       children: [
+              //         Text(
+              //           'Request a Call back',
+              //           style: GoogleFonts.poppins(
+              //               color: Colors.black, fontSize: 16),
+              //         ),
+              //         Spacer(),
+              //         Icon(
+              //           FeatherIcons.arrowRight,
+              //           color: Colors.black26,
+              //         )
+              //       ],
+              //     ),
+              //   ),
+              // ),
               SizedBox(
                 height: 20,
               ),
@@ -131,89 +175,7 @@ class MoreOptions extends StatelessWidget {
                             elevation: 0,
                             iconTheme: IconThemeData(color: Colors.black),
                           ),
-                          body: errorPage(),
-                        ),
-                      ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Color.fromARGB(255, 243, 243, 243),
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                  child: Row(
-                    children: [
-                      Text(
-                        'Request a Call back',
-                        style: GoogleFonts.poppins(
-                            color: Colors.black, fontSize: 16),
-                      ),
-                      Spacer(),
-                      Icon(
-                        FeatherIcons.arrowRight,
-                        color: Colors.black26,
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                height: 50,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => Scaffold(
-                          appBar: AppBar(
-                            backgroundColor: Color.fromARGB(255, 243, 243, 243),
-                            elevation: 0,
-                            iconTheme: IconThemeData(color: Colors.black),
-                          ),
-                          body: errorPage(),
-                        ),
-                      ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Color.fromARGB(255, 243, 243, 243),
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                  child: Row(
-                    children: [
-                      Text(
-                        'Library rules',
-                        style: GoogleFonts.poppins(
-                            color: Colors.black, fontSize: 16),
-                      ),
-                      Spacer(),
-                      Icon(
-                        FeatherIcons.arrowRight,
-                        color: Colors.black26,
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                height: 50,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => Scaffold(
-                          appBar: AppBar(
-                            backgroundColor: Color.fromARGB(255, 243, 243, 243),
-                            elevation: 0,
-                            iconTheme: IconThemeData(color: Colors.black),
-                          ),
-                          body: errorPage(),
+                          body: paymentPage(),
                         ),
                       ),
                     );
@@ -227,6 +189,47 @@ class MoreOptions extends StatelessWidget {
                     children: [
                       Text(
                         'Fine Payment',
+                        style: GoogleFonts.poppins(
+                            color: Colors.black, fontSize: 16),
+                      ),
+                      Spacer(),
+                      Icon(
+                        FeatherIcons.arrowRight,
+                        color: Colors.black26,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => Scaffold(
+                          appBar: AppBar(
+                            backgroundColor: Color.fromARGB(255, 243, 243, 243),
+                            elevation: 0,
+                            iconTheme: IconThemeData(color: Colors.black),
+                          ),
+                          body: rulesPage(),
+                        ),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                      primary: Color.fromARGB(255, 243, 243, 243),
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10))),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Library guidelines',
                         style: GoogleFonts.poppins(
                             color: Colors.black, fontSize: 16),
                       ),
