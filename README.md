@@ -7,7 +7,6 @@ Feel free to contribute and report issues.
 ### Images
 
 
-
 <p align="center">
    <img src="https://raw.githubusercontent.com/joyetgeorge/Atheneum/master/images/img10.jpeg" width="250">
 <!--    <img src="https://raw.githubusercontent.com/joyetgeorge/Atheneum/master/images/img1.jpeg" width="250"> -->
